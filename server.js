@@ -31,7 +31,7 @@ app.get("/file/*?", function (req, res, next) {
   });
 });
 
-var main = require("./myApp.js").default;
+var main = require("./myApp.js");
 app.get("/app-info", function (req, res) {
   // list middlewares mounted on the '/' camper's app
   var appMainRouteStack = main._router.stack

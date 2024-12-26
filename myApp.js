@@ -1,8 +1,8 @@
-const express = require('express');
-const helmet = require('helmet');
+import express from 'express';
+import { hidePoweredBy } from 'helmet';
 const app = express();
 
-app.use(helmet.hidePoweredBy());
+app.use(hidePoweredBy());
 
 
 
@@ -45,9 +45,9 @@ app.use(helmet.hidePoweredBy());
 
 
 
-module.exports = app;
-const api = require('./server.js');
-app.use(express.static('public'));
+export default app;
+import api from './server.js';
+app.use(static('public'));
 app.disable('strict-transport-security');
 app.use('/_api', api);
 app.get("/", function (request, response) {

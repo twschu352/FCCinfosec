@@ -6,15 +6,6 @@ const helmet = require("helmet");
 
 // Use helmet middleware
 app.use(helmet());
-
-// Your code ends here
-
-// Existing code provided by the course
-// Your code starts here
-const helmet = require("helmet");
-
-// Use helmet middleware
-app.use(helmet());
 // Your code ends here
 
 // Existing code provided by the course

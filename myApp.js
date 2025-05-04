@@ -4,20 +4,14 @@ const app = express();
 // ====== REQUIRE & USE HELMET ======
 const helmet = require("helmet");
 
-// ====== Hide X-Powered-By header ======
-app.use(helmet.hidePoweredBy());
-
-// ====== USE HELMET'S FRAMEGUARD MIDDLEWARE ======
-app.use(helmet.frameguard({ action: "deny" })); // Blocks ALL framing
-
-// ====== USE HELMET'S XSSFILTER MIDDLEWARE ======
-app.use(helmet.xssFilter()); // Sets "X-XSS-Protection: 1; mode=block"
-
-// ====== USE HELMET'S NOSNIFF MIDDLEWARE ======
-app.use(helmet.noSniff()); // Sets "X-Content-Type-Options: nosniff"
-
-// ====== USE HELMET'S IENOOPEN MIDDLEWARE ======
-app.use(helmet.ieNoOpen()); // Sets "X-Download-Options: noopen"
+// ====== USE HELMET'S HSTS MIDDLEWARE ======
+const ninetyDaysInSeconds = 90 * 24 * 60 * 60; // 90 days in seconds
+app.use(
+  helmet.hsts({
+    maxAge: ninetyDaysInSeconds,
+    force: true, // Enforces HTTPS even on the initial request
+  })
+);
 
 module.exports = app;
 const api = require("./server.js");

@@ -19,6 +19,16 @@ app.use(helmet.dnsPrefetchControl()); // Disables DNS prefetching
 // ====== DISABLE CLIENT-SIDE CACHING ======
 app.use(helmet.noCache()); // Sets several anti-caching headers
 
+// ====== SET CONTENT SECURITY POLICY ======
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'"], // Trust only your domain by default
+      scriptSrc: ["'self'", "trusted-cdn.com"], // Allow scripts from self and trusted CDN
+    },
+  })
+);
+
 module.exports = app;
 const api = require("./server.js");
 app.use(express.static("public"));

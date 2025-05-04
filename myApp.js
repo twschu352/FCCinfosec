@@ -5,8 +5,10 @@ const app = express();
 const helmet = require("helmet");
 app.use(helmet()); // Basic Helmet setup (includes hidePoweredBy by default)
 
-// if you want to explicitly use hidePoweredBy alone:
-app.use(helmet.hidePoweredBy());
+app.use(helmet.hidePoweredBy()); // Explicitly hide X-Powered-By header
+
+// ====== USE HELMET'S FRAMEGUARD MIDDLEWARE ======
+app.use(helmet.frameguard({ action: "deny" })); // Blocks ALL framing
 
 module.exports = app;
 const api = require("./server.js");

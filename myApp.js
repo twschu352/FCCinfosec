@@ -4,7 +4,7 @@ const app = express();
 // ====== REQUIRE & USE HELMET ======
 const helmet = require("helmet");
 
-// Hide X-Powered-By header
+// ====== Hide X-Powered-By header ======
 app.use(helmet.hidePoweredBy());
 
 // ====== USE HELMET'S FRAMEGUARD MIDDLEWARE ======
@@ -15,6 +15,9 @@ app.use(helmet.xssFilter()); // Sets "X-XSS-Protection: 1; mode=block"
 
 // ====== USE HELMET'S NOSNIFF MIDDLEWARE ======
 app.use(helmet.noSniff()); // Sets "X-Content-Type-Options: nosniff"
+
+// ====== USE HELMET'S IENOOPEN MIDDLEWARE ======
+app.use(helmet.ieNoOpen()); // Sets "X-Download-Options: noopen"
 
 module.exports = app;
 const api = require("./server.js");

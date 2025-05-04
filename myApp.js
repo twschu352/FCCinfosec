@@ -13,6 +13,9 @@ app.use(
   })
 );
 
+// ====== DISABLE DNS PREFETCHING ======
+app.use(helmet.dnsPrefetchControl()); // Disables DNS prefetching
+
 module.exports = app;
 const api = require("./server.js");
 app.use(express.static("public"));

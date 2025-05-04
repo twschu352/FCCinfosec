@@ -5,10 +5,14 @@ const app = express();
 const helmet = require("helmet");
 app.use(helmet()); // Basic Helmet setup (includes hidePoweredBy by default)
 
-app.use(helmet.hidePoweredBy()); // Explicitly hide X-Powered-By header
+// Hide X-Powered-By header
+app.use(helmet.hidePoweredBy());
 
 // ====== USE HELMET'S FRAMEGUARD MIDDLEWARE ======
 app.use(helmet.frameguard({ action: "deny" })); // Blocks ALL framing
+
+// ====== USE HELMET'S XSSFILTER MIDDLEWARE ======
+app.use(helmet.xssFilter()); // Sets "X-XSS-Protection: 1; mode=block"
 
 module.exports = app;
 const api = require("./server.js");

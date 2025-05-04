@@ -1,6 +1,13 @@
 const express = require("express");
 const app = express();
 
+// ====== REQUIRE & USE HELMET ======
+const helmet = require("helmet");
+app.use(helmet()); // Basic Helmet setup (includes hidePoweredBy by default)
+
+// if you want to explicitly use hidePoweredBy alone:
+app.use(helmet.hidePoweredBy());
+
 module.exports = app;
 const api = require("./server.js");
 app.use(express.static("public"));

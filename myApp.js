@@ -1,10 +1,8 @@
 const express = require('express');
 const app = express();
 const helmet = require('helmet');
-
 //mounting helmet framegard
 app.use(helmet.frameguard({action: 'deny'}));
-
 //mounting helmet middleware with hide poweredby
 app.use(helmet.hidePoweredBy());
 

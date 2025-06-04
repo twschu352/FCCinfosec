@@ -6,7 +6,8 @@ const helmet = require('helmet');
 app.use(helmet.hidePoweredBy());
 
 //mounting helmet framegard
-app.use(helmet.frameguard({action: 'deny'}));
+app.use(helmet.frameguard());
+helmet.frameguard({action: 'deny'})
 
 
 
